@@ -35,4 +35,11 @@ class Transform_into
     var
   end
 
+  def self.plural_for_ivar(var,ivar)
+    if var.to_s.eql? ivar.to_s
+      var.to_s.pluralize
+    else
+      var
+    end
+  end
 end
