@@ -70,29 +70,35 @@ def look_for_link_to_calls(code)
   controller_name = ''
   method_name = code.children[1]
   if method_name == $link_to
-    found_confirm_call = look_for_confirm_call(code)
-    if !found_confirm_call && !code.children[3].nil?
-      method_argument_type = code.children[3].type
-      if method_argument_type == $ivar || method_argument_type == $lvar
-        method_argument_value = code.children[3].children[0]
-        insert_outputs_on_array(Transform_into.var_into_method(method_argument_value), "",'')
+    if is_still_a_node(code.children[2])
+      if code.children[2].type == $str && code.children[2].children[0] == '#'
+        controller_name = ''
       else
-        method_inside_link_to_has_params = code.children[3].children[1].nil?
-        if !method_inside_link_to_has_params
-          method_inside_link_to_param = code.children[3].children[1]
-          if is_still_a_node(method_inside_link_to_param)
-            if method_inside_link_to_param.type == $pair
-              method_inside_link_to_param = code.children[3].children[1].children[1].children[0]
-              controller_name = code.children[3].children[0].children[1].children[0]
+        found_confirm_call = look_for_confirm_call(code)
+        if !found_confirm_call && !code.children[3].nil?
+          method_argument_type = code.children[3].type
+          if method_argument_type == $ivar || method_argument_type == $lvar
+            method_argument_value = code.children[3].children[0]
+           insert_outputs_on_array(Transform_into.var_into_method(method_argument_value), "",'')
+         else
+            method_inside_link_to_has_params = code.children[3].children[1].nil?
+            if !method_inside_link_to_has_params
+              method_inside_link_to_param = code.children[3].children[1]
               if is_still_a_node(method_inside_link_to_param)
-                method_inside_link_to_param = method_inside_link_to_param.children[0]
+                if method_inside_link_to_param.type == $pair
+                  method_inside_link_to_param = code.children[3].children[1].children[1].children[0]
+                  controller_name = code.children[3].children[0].children[1].children[0]
+                  if is_still_a_node(method_inside_link_to_param)
+                    method_inside_link_to_param = method_inside_link_to_param.children[0]
+                  end
+                 if is_still_a_node(controller_name)
+                    controller_name = ''
+                  end
+                end
               end
-              if is_still_a_node(controller_name)
-                controller_name = ''
-              end
+              insert_outputs_on_array(method_inside_link_to_param, Transform_into.singular(controller_name.to_s),'')
             end
           end
-          insert_outputs_on_array(method_inside_link_to_param, Transform_into.singular(controller_name.to_s),'')
         end
       end
     end
