@@ -13,7 +13,7 @@ class TaskAnalyser
         end
       when 'haml'
         begin
-        puts HamlControllerExtractor.new.haml_controller_extractor(file_path)
+        return HamlControllerExtractor.new.haml_controller_extractor(file_path)
         rescue
           raise "Syntax exception : the file #{file_path} is either wrong or this tool cannot analise it"
         end
