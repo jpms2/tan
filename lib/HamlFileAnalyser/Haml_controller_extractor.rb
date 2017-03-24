@@ -21,8 +21,12 @@ class HamlControllerExtractor
       elsif output.name[0] == '@'
         output.name = output.name[1..-1]
       end
-      if output.name[0] == '_'
-        output.name = "app/views/projects/#{output.name}"
+      if !output.name.to_s.include?('/') && output.receiver == ''
+        output.name = "#{/app.*\/.*\/|app.*\\.*\\/.match(file_path).to_s}#{output.name}"
+      else
+        if !output.name.to_s.include?('app/views') && output.receiver == ''
+          output.name = "app/views/#{output.name}"
+        end
       end
       output_value = output_value + "[name: '#{output.name}', receiver: '#{output.receiver}', label: '#{output.label}']\n"
     end
