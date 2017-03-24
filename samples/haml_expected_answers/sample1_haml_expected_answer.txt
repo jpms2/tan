@@ -1,2 +1,0 @@
-[name: 'new_password_reset_path', receiver: '', label: '']
-[name: 'user_session_path', receiver: '', label: 'Sign in']

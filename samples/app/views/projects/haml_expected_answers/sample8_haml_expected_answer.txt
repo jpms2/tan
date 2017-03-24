@@ -1,0 +1,1 @@
+[name: 'app/views/groups/_codes.html.haml', receiver: '', label: '']
