@@ -10,8 +10,8 @@ describe "Extraction of dependencies in erb files, including calls to controller
     file_manager = File_manager.new
     while i < 24 do
       controller_extractor = ErbControllerExtractor.new
-      sample_path = "#{path}/samples/sample#{i}.html.erb"
-      answer_string = file_manager.read_file("#{path}/samples/erb_expected_answers/sample#{i}_expected_answer.txt").gsub(/\s+/, "")
+      sample_path = "#{path}/samples/app/views/projects/sample#{i}.html.erb"
+      answer_string = file_manager.read_file("#{path}/samples/app/views/projects/erb_expected_answers/sample#{i}_expected_answer.txt").gsub(/\s+/, "")
       tool_answer = controller_extractor.erb_controller_extractor(sample_path).gsub(/\s+/, "")
       i += 1
       if !(answer_string == tool_answer)

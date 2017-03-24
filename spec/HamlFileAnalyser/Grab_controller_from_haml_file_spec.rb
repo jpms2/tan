@@ -9,8 +9,8 @@ describe 'Extraction of dependencies in haml files, including calls to controlle
     file_manager = File_manager.new
     while i < 9 do
       controller_extractor = HamlControllerExtractor.new
-      sample_path = "#{path}/samples/sample#{i}.html.haml"
-      answer_string = file_manager.read_file("#{path}/samples/haml_expected_answers/sample#{i}_haml_expected_answer.txt").gsub(/\s+/, "")
+      sample_path = "#{path}/samples/app/views/projects/sample#{i}.html.haml"
+      answer_string = file_manager.read_file("#{path}/samples/app/views/projects/haml_expected_answers/sample#{i}_haml_expected_answer.txt").gsub(/\s+/, "")
       tool_answer = controller_extractor.haml_controller_extractor(sample_path).gsub(/\s+/, "")
       i += 1
       if !(answer_string == tool_answer)
