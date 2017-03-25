@@ -1,2 +1,2 @@
-[name: 'app/views/projects/download_assignment_comments_path', receiver: '', label: '']
-[name: 'app/views/projects/download_assignment_comments_path', receiver: '', label: '']
+[name: 'download_assignment_comments_path', receiver: '', label: '']
+[name: 'download_assignment_comments_path', receiver: '', label: '']

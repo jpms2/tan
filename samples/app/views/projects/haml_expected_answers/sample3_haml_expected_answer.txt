@@ -1,1 +1,1 @@
-[name: 'app/views/projects/admin_document_path', receiver: '', label: 'save']
+[name: 'admin_document_path', receiver: '', label: 'save']

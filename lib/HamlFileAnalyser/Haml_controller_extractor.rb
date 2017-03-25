@@ -16,19 +16,24 @@ class HamlControllerExtractor
     parsed_code = Ruby_parser.new.parse_code(code)
     output_array = Find_controller_calls.new([],'','','haml').find_controllers(parsed_code)
     output_array.each do |output|
-      if output.name[1] == '@'
-        output.name = "#{output.name[0]}#{output.name[2..-1]}"
-      elsif output.name[0] == '@'
-        output.name = output.name[1..-1]
-      end
-      if !output.name.to_s.include?('/') && output.receiver == ''
-        output.name = "#{/app.*\/.*\/|app.*\\.*\\/.match(file_path).to_s}#{output.name}"
-      else
-        if !output.name.to_s.include?('app/views') && output.receiver == ''
-          output.name = "app/views/#{output.name}"
+      if !output.name.nil?
+        if output.name[1] == '@'
+          output.name = "#{output.name[0]}#{output.name[2..-1]}"
+        elsif output.name[0] == '@'
+          output.name = output.name[1..-1]
+        end
+        if !output.name.to_s.include?('/') && output.receiver == '' && !output.name.to_s.include?('_path')
+          puts output.name
+          output.name = "#{/app.*\/.*\/|app.*\\.*\\/.match(file_path).to_s}#{output.name}"
+        else
+          if !output.name.to_s.include?('app/views') && output.receiver == '' && !output.name.to_s.include?('_path')
+            output.name = "app/views/#{output.name}"
+          end
         end
       end
-      output_value = output_value + "[name: '#{output.name}', receiver: '#{output.receiver}', label: '#{output.label}']\n"
+      if !output.name.nil?
+        output_value = output_value + "[name: '#{output.name}', receiver: '#{output.receiver}', label: '#{output.label}']\n"
+      end
     end
     output_value
   end

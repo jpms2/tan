@@ -1,2 +1,2 @@
-[name: 'app/views/projects/new_password_reset_path', receiver: '', label: '']
-[name: 'app/views/projects/user_session_path', receiver: '', label: 'Sign in']
+[name: 'new_password_reset_path', receiver: '', label: '']
+[name: 'user_session_path', receiver: '', label: 'Sign in']
