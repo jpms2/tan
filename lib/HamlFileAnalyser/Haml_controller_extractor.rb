@@ -41,6 +41,7 @@ class HamlControllerExtractor
         output.name = "app/views/#{output.name}"
       end
     end
+    output
   end
 
   def remove_symbols(output)
@@ -49,6 +50,7 @@ class HamlControllerExtractor
     elsif output.name[0] == '@'
       output.name = output.name[1..-1]
     end
+    output
   end
 
 end
