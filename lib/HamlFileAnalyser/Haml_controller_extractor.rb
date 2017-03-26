@@ -22,13 +22,13 @@ class HamlControllerExtractor
         elsif output.name[0] == '@'
           output.name = output.name[1..-1]
         end
-        if !output.name.to_s.include?('/') && output.receiver == '' && !output.name.to_s.include?('_path')
+        if !output.name.to_s.include?('/') && output.name.to_s.include?('.haml')
           if output.name[0] == '/' || output.name[0] == "\\"
             output.name = output.name[1..-1]
           end
           output.name = "#{/app.*\/.*\/|app.*\\.*\\/.match(file_path).to_s}#{output.name}"
         else
-          if !output.name.to_s.include?('app/views') && output.receiver == '' && !output.name.to_s.include?('_path')
+          if !output.name.to_s.include?('app/views') && output.name.to_s.include?('.haml')
             if output.name[0] == '/' || output.name[0] == "\\"
               output.name = output.name[1..-1]
             end
