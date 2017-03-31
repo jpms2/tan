@@ -1,4 +1,4 @@
-[name: '/user_sessions/_header.html.erb', receiver: '']
-[name: '/user_sessions/_menu.html.erb', receiver: '']
-[name: 'pwd_recovery_send', receiver: 'user']
-[name: '/user_sessions/_footer.html.erb', receiver: '']
+[name: 'app/views/user_sessions/_header.html.erb', receiver: '', label: '']
+[name: 'app/views/user_sessions/_menu.html.erb', receiver: '', label: '']
+[name: 'pwd_recovery_send', receiver: 'user', label: '']
+[name: 'app/views/user_sessions/_footer.html.erb', receiver: '', label: '']
