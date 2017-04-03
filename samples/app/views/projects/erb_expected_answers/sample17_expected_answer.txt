@@ -2,7 +2,6 @@
 [name: 'otml_import_id', receiver: '@otrunk_view_entry', label: '']
 [name: 'classname', receiver: '@otrunk_view_entry', label: '']
 [name: 'fq_classname', receiver: '@otrunk_view_entry', label: '']
-[name: 'otrunk_view_entry_path', receiver: '', label: '']
 [name: 'edit_otrunk_view_entry_path', receiver: '', label: '']
 [name: 'destroy', receiver: 'otrunk_view_entries_controller', label: '']
 [name: 'new_otrunk_view_entry_path', receiver: '', label: '']

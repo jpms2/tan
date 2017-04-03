@@ -3,7 +3,6 @@
 [name: 'name', receiver: '@otml_file', label: '']
 [name: 'path', receiver: '@otml_file', label: '']
 [name: 'content', receiver: '@otml_file', label: '']
-[name: 'otml_file_path', receiver: '', label: '']
 [name: 'edit_otml_file_path', receiver: '', label: '']
 [name: 'destroy', receiver: 'otml_files_controller', label: '']
 [name: 'new_otml_file_path', receiver: '', label: '']
