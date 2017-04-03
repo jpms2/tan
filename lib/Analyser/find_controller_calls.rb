@@ -77,15 +77,23 @@ def look_for_link_to_calls(code)
         found_confirm_call = look_for_confirm_call(code)
         if !found_confirm_call && !code.children[3].nil?
           method_argument_type = code.children[3].type
-          if method_argument_type == $ivar || method_argument_type == $lvar
+          if method_argument_type == $ivar
             method_argument_value = code.children[3].children[0]
             is_instance_or_method = ( method_argument_value.to_s[0] == '@' || method_argument_value.to_s.include?('_path'))
             if method_argument_value.to_s.size > 1 && (is_instance_or_method || check_if_eq_instance_variable(method_argument_value))
-              insert_outputs_on_array(Transform_into.var_into_method(method_argument_value), "",'')
+              if method_argument_value.to_s.include?('_path')
+                insert_outputs_on_array(method_argument_value, "",'')
+                puts '1'
+              else
+                insert_outputs_on_array(Transform_into.var_into_method(method_argument_value), "",'')
+              end
             end
           else
             method_inside_link_to_has_params = code.children[3].children[1].nil?
-            if !method_inside_link_to_has_params
+            if is_still_a_node(code.children[3].children[0])
+              has_callee = code.children[3].children[0].children[1]
+            end
+            if !method_inside_link_to_has_params && has_callee.class != Symbol
               method_inside_link_to_param = code.children[3].children[1]
               if is_still_a_node(method_inside_link_to_param)
                   method_inside_link_to_param = method_inside_link_to_param.children[1]
@@ -108,7 +116,9 @@ def look_for_link_to_calls(code)
                     if code.children[3].children[0].type == $lvar
                       method_inside_link_to_param = ''
                     else
-                      method_inside_link_to_param = Transform_into.name_with_extension(method_inside_link_to_param.to_s, $language)
+                      if method_inside_link_to_param.to_s.size > 1
+                        method_inside_link_to_param = Transform_into.name_with_extension(method_inside_link_to_param.to_s, $language)
+                      end
                     end
                   end
                 end
@@ -335,7 +345,7 @@ def look_for_semantic_form_for(code, label)
           end
         end
       end
-      if loop_url != '' && !is_still_a_node(loop_url)
+      if loop_url.to_s != '' && !is_still_a_node(loop_url)
         insert_outputs_on_array(loop_url.to_s,'',label)
       end
     end
@@ -368,7 +378,8 @@ def look_for_render_call(code, instance_variable)
         if !method_argument.children[1].nil?
           method_argument = method_argument.children[1].children[0]
         else
-          if method_argument.type != $ivar
+          puts method_argument
+          if method_argument.type != $ivar && method_argument.type != $lvar
             method_argument = method_argument.children[0]
           end
         end
