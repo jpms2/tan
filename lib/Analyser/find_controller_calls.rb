@@ -189,7 +189,7 @@ def look_for_auto_gen_methods(code, instance_variable,lvar_derived_from_ivar)
     end
     if !method_argument_value.nil?
       if instance_variable != '' || (method_argument_value.to_s.include?('/') || method_argument_value.to_s.include?('_path'))
-        insert_outputs_on_array(method_argument_value, instance_variable,'',count_method_arguments(code))
+        insert_outputs_on_array(method_argument_value, instance_variable,'',count_method_arguments(father_node))
       end
     end
   end
