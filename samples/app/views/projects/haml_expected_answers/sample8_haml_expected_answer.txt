@@ -1,1 +1,1 @@
-[name: 'app/views/groups/_codes.html.haml', receiver: '', label: '']
+[name: 'app/views/groups/_codes.html.haml', receiver: '', label: '', arguments: '0']

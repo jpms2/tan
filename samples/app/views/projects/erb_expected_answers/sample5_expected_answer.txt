@@ -1,4 +1,4 @@
-[name: 'uuid', receiver: '@otml_category', label: '']
-[name: 'name', receiver: '@otml_category', label: '']
-[name: 'create', receiver: '@otml_categories_controller', label: '']
-[name: 'otml_categories_path', receiver: '', label: '']
+[name: 'uuid', receiver: '@otml_category', label: '', arguments: '0']
+[name: 'name', receiver: '@otml_category', label: '', arguments: '0']
+[name: 'create', receiver: '@otml_categories_controller', label: '', arguments: '0']
+[name: 'otml_categories_path', receiver: '', label: '', arguments: '0']

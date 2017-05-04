@@ -1,2 +1,2 @@
-[name: 'edit_otrunk_view_entry_path', receiver: '', label: '']
-[name: 'otrunk_view_entries_path', receiver: '', label: '']
+[name: 'edit_otrunk_view_entry_path', receiver: '', label: '', arguments: '1']
+[name: 'otrunk_view_entries_path', receiver: '', label: '', arguments: '0']

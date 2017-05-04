@@ -1,1 +1,1 @@
-[name: 'photo_submit', receiver: '@users_controller', label: '']
+[name: 'photo_submit', receiver: '@users_controller', label: '', arguments: '0']
